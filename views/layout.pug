@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="/socket.io/socket.io.js")
+  body
+    block content
+    button(onClick="playFunc()") Button
+    script.
+     const socket = io();
+     playFunc = function(){
+       console.log('clicked');
+       socket.emit("play", "play text");
+       socket.on("play", () => {
+         console.log("message from server");
+       });
+     };
+    
